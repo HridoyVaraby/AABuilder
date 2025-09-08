@@ -87,6 +87,9 @@ class ProjectGenerator {
     async processTemplateFiles(projectPath, config) {
         const replacements = this.createReplacements(config);
         
+        // First, handle Java package structure and copy MainActivity.java to correct location
+        await this.createJavaPackageStructure(projectPath, config.packageName);
+        
         // Files to process with replacements
         const filesToProcess = [
             'app/src/main/AndroidManifest.xml',
@@ -113,9 +116,6 @@ class ProjectGenerator {
                 await this.processTemplateFile(fullPath, replacements);
             }
         }
-
-        // Handle Java package structure
-        await this.createJavaPackageStructure(projectPath, config.packageName);
     }
 
     createReplacements(config) {
