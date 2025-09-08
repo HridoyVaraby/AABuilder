@@ -130,6 +130,7 @@ class ProjectGenerator {
             '{{PERMISSIONS}}': permissionTags,
             '{{PRIMARY_COLOR}}': config.colorScheme || '#2196F3',
             '{{SOURCE_URL}}': config.sourceUrl || '',
+            '{{SOURCE_TYPE}}': config.sourceType || 'url',
             '{{LOAD_URL}}': this.generateLoadUrlCode(config)
         };
     }
