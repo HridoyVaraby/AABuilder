@@ -1,0 +1,35 @@
+{
+  "name": "aabuilder",
+  "version": "1.0.0",
+  "description": "Android WebView App Builder using Electron + Node.js",
+  "main": "electron-app/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "build": "electron-builder",
+    "pack": "electron-builder --dir",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "fs-extra": "^11.2.0",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "electron": "^38.0.0",
+    "electron-builder": "^25.0.5"
+  },
+  "build": {
+    "appId": "com.varabit.aabuilder",
+    "productName": "AABuilder",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "electron-app/**/*",
+      "templates/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ]
+  }
+}

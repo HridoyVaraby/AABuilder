@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test WebView App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            text-align: center;
+            max-width: 600px;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        .feature-list {
+            text-align: left;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .feature-list h3 {
+            margin-top: 0;
+        }
+        .feature-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .feature-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        .test-buttons {
+            margin: 20px 0;
+        }
+        .test-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 12px 24px;
+            margin: 5px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        .test-btn:hover {
+            background: white;
+            color: #667eea;
+        }
+        #status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Test WebView App</h1>
+        <p>This is a test page for AABuilder! If you can see this content in your Android app, 
+        the local folder functionality is working perfectly.</p>
+        
+        <div class="feature-list">
+            <h3>✅ Working Features:</h3>
+            <ul>
+                <li>📱 HTML Content Loading</li>
+                <li>🎨 CSS Styling</li>
+                <li>⚡ JavaScript Execution</li>
+                <li>📐 Responsive Design</li>
+                <li>🎯 Touch-Friendly Interface</li>
+            </ul>
+        </div>
+
+        <div class="test-buttons">
+            <button class="test-btn" onclick="testJavaScript()">Test JavaScript</button>
+            <button class="test-btn" onclick="testLocalStorage()">Test Local Storage</button>
+            <button class="test-btn" onclick="testGeolocation()">Test Geolocation</button>
+        </div>
+
+        <div id="status">Ready for testing!</div>
+    </div>
+
+    <script>
+        function testJavaScript() {
+            document.getElementById('status').innerHTML = 
+                '✅ JavaScript is working! Current time: ' + new Date().toLocaleTimeString();
+        }
+
+        function testLocalStorage() {
+            try {
+                localStorage.setItem('test', 'AABuilder rocks!');
+                const value = localStorage.getItem('test');
+                document.getElementById('status').innerHTML = 
+                    '✅ Local Storage working! Stored: ' + value;
+            } catch (e) {
+                document.getElementById('status').innerHTML = 
+                    '❌ Local Storage failed: ' + e.message;
+            }
+        }
+
+        function testGeolocation() {
+            if (navigator.geolocation) {
+                document.getElementById('status').innerHTML = '🔍 Requesting location...';
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        document.getElementById('status').innerHTML = 
+                            '✅ Location: ' + position.coords.latitude + ', ' + position.coords.longitude;
+                    },
+                    function(error) {
+                        document.getElementById('status').innerHTML = 
+                            '❌ Location error: ' + error.message;
+                    }
+                );
+            } else {
+                document.getElementById('status').innerHTML = 
+                    '❌ Geolocation not supported';
+            }
+        }
+
+        // Auto-test on load
+        setTimeout(testJavaScript, 1000);
+    </script>
+</body>
+</html>

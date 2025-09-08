@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AABuilder - Android WebView App Builder</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>🚀 AABuilder</h1>
+            <p>Android WebView App Builder</p>
+        </header>
+
+        <main class="main-content">
+            <form id="app-form" class="app-form" novalidate>
+                <!-- App Information Section -->
+                <section class="form-section">
+                    <h2>📱 App Information</h2>
+                    
+                    <div class="form-group">
+                        <label for="app-name">App Name *</label>
+                        <input type="text" id="app-name" name="appName" required placeholder="My Awesome App">
+                        <small>The display name of your app</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="package-name">Package Name *</label>
+                        <input type="text" id="package-name" name="packageName" required 
+                               placeholder="com.yourcompany.yourapp">
+                        <small>Unique identifier (e.g., com.varabit.myapp, com.company.app123)</small>
+                        <div id="package-error" class="error-message"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="app-icon">App Icon</label>
+                        <div class="file-input-group">
+                            <button type="button" id="select-icon-btn" class="file-btn">Choose Icon</button>
+                            <span id="icon-path" class="file-path">No icon selected</span>
+                        </div>
+                        <small>PNG, JPG, or ICO file (recommended: 512x512px)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="color-scheme">Primary Color</label>
+                        <div class="color-input-group">
+                            <input type="color" id="color-scheme" name="colorScheme" value="#2196F3">
+                            <input type="text" id="color-text" name="colorText" value="#2196F3" 
+                                   placeholder="#2196F3" pattern="^#[0-9A-Fa-f]{6}$">
+                        </div>
+                        <small>Primary color for app theme</small>
+                    </div>
+                </section>
+
+                <!-- Source Configuration Section -->
+                <section class="form-section">
+                    <h2>🌐 Source Configuration</h2>
+                    
+                    <div class="form-group">
+                        <label>Source Type *</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="sourceType" value="url" checked>
+                                <span class="radio-custom"></span>
+                                🌐 Online URL
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="sourceType" value="local">
+                                <span class="radio-custom"></span>
+                                📁 Local Folder
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="url-group">
+                        <label for="source-url">Website URL *</label>
+                        <input type="url" id="source-url" name="sourceUrl" 
+                               placeholder="https://example.com">
+                        <small>The website your app will display</small>
+                    </div>
+
+                    <div class="form-group" id="local-group" style="display: none;">
+                        <label for="source-folder">Local Folder *</label>
+                        <div class="file-input-group">
+                            <button type="button" id="select-folder-btn" class="file-btn">Choose Folder</button>
+                            <span id="folder-path" class="file-path">No folder selected</span>
+                        </div>
+                        <small>Folder containing your HTML/CSS/JS files (must have index.html)</small>
+                    </div>
+                </section>
+
+                <!-- Permissions Section -->
+                <section class="form-section">
+                    <h2>🔐 App Permissions</h2>
+                    <p class="section-description">Select the permissions your app needs:</p>
+                    
+                    <div class="permissions-grid">
+                        <label class="permission-item">
+                            <input type="checkbox" name="permissions" value="INTERNET" checked>
+                            <span class="permission-name">Internet Access</span>
+                            <small>Required for online content</small>
+                        </label>
+                        
+                        <label class="permission-item">
+                            <input type="checkbox" name="permissions" value="ACCESS_NETWORK_STATE">
+                            <span class="permission-name">Network State</span>
+                            <small>Check network connectivity</small>
+                        </label>
+                        
+                        <label class="permission-item">
+                            <input type="checkbox" name="permissions" value="CAMERA">
+                            <span class="permission-name">Camera</span>
+                            <small>Access device camera</small>
+                        </label>
+                        
+                        <label class="permission-item">
+                            <input type="checkbox" name="permissions" value="READ_EXTERNAL_STORAGE">
+                            <span class="permission-name">Read Storage</span>
+                            <small>Read files from storage</small>
+                        </label>
+                        
+                        <label class="permission-item">
+                            <input type="checkbox" name="permissions" value="WRITE_EXTERNAL_STORAGE">
+                            <span class="permission-name">Write Storage</span>
+                            <small>Save files to storage</small>
+                        </label>
+                        
+                        <label class="permission-item">
+                            <input type="checkbox" name="permissions" value="ACCESS_FINE_LOCATION">
+                            <span class="permission-name">Location</span>
+                            <small>Access GPS location</small>
+                        </label>
+                        
+                        <label class="permission-item">
+                            <input type="checkbox" name="permissions" value="RECORD_AUDIO">
+                            <span class="permission-name">Microphone</span>
+                            <small>Record audio</small>
+                        </label>
+                        
+                        <label class="permission-item">
+                            <input type="checkbox" name="permissions" value="VIBRATE">
+                            <span class="permission-name">Vibration</span>
+                            <small>Device vibration</small>
+                        </label>
+                    </div>
+                </section>
+
+                <!-- Output Section -->
+                <section class="form-section">
+                    <h2>📂 Output Configuration</h2>
+                    
+                    <div class="form-group">
+                        <label for="output-folder">Output Folder</label>
+                        <div class="file-input-group">
+                            <button type="button" id="select-output-btn" class="file-btn">Choose Output Folder</button>
+                            <span id="output-path" class="file-path">Default: ./output</span>
+                        </div>
+                        <small>Where to save the generated Android project</small>
+                    </div>
+                </section>
+
+                <!-- Actions -->
+                <div class="form-actions">
+                    <button type="submit" id="generate-btn" class="generate-btn">
+                        🚀 Generate Android Project
+                    </button>
+                </div>
+            </form>
+
+            <!-- Progress Section -->
+            <div id="progress-section" class="progress-section" style="display: none;">
+                <div class="progress-content">
+                    <h3>🔄 Generating Project...</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <p id="progress-text">Initializing...</p>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results-section" class="results-section" style="display: none;">
+                <div class="results-content">
+                    <h3 id="results-title">✅ Project Generated Successfully!</h3>
+                    <p id="results-message">Your Android project has been created.</p>
+                    <div class="results-actions">
+                        <button type="button" id="open-output-btn" class="action-btn">Open Output Folder</button>
+                        <button type="button" id="new-project-btn" class="action-btn secondary">Create New Project</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
