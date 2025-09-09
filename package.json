@@ -30,6 +30,15 @@
       "templates/**/*",
       "node_modules/**/*",
       "package.json"
-    ]
+    ],
+    "win": {
+      "icon": "electron-app/assets/icons/icon256x256.ico"
+    },
+    "mac": {
+      "icon": "electron-app/assets/icons/icon512x512.ico"
+    },
+    "linux": {
+      "icon": "electron-app/assets/icons/icon512x512.ico"
+    }
   }
 }

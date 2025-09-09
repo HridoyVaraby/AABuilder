@@ -16,7 +16,7 @@ function createWindow() {
       contextIsolation: true,
       preload: path.join(__dirname, 'preload.js')
     },
-    icon: path.join(__dirname, 'assets', 'icon.png'), // We'll create this later
+    icon: path.join(__dirname, 'assets', 'icons', 'icon256x256.ico'),
     show: false
   });
 
