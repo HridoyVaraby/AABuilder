@@ -121,14 +121,20 @@ class ProjectGenerator {
     createReplacements(config) {
         const permissions = config.permissions || [];
         const permissionTags = permissions.map(perm => 
-            `    <uses-permission android:name=\"android.permission.${perm}\" />`
+            `    <uses-permission android:name="android.permission.${perm}" />`
         ).join('\\n');
+
+        // Generate color variants from primary color
+        const primaryColor = config.colorScheme || '#f26a1e';
+        const colorVariants = this.generateColorVariants(primaryColor);
 
         return {
             '{{APP_NAME}}': config.appName,
             '{{PACKAGE_NAME}}': config.packageName,
             '{{PERMISSIONS}}': permissionTags,
-            '{{PRIMARY_COLOR}}': config.colorScheme || '#2196F3',
+            '{{PRIMARY_COLOR}}': primaryColor,
+            '{{PRIMARY_COLOR_DARK}}': colorVariants.primaryDark,
+            '{{ACCENT_COLOR}}': colorVariants.accent,
             '{{SOURCE_URL}}': config.sourceUrl || '',
             '{{SOURCE_TYPE}}': config.sourceType || 'url',
             '{{LOAD_URL}}': this.generateLoadUrlCode(config)
@@ -141,6 +147,34 @@ class ProjectGenerator {
         } else {
             return `webView.loadUrl("file:///android_asset/index.html");`;
         }
+    }
+
+    generateColorVariants(primaryColor) {
+        // Remove # if present
+        const color = primaryColor.replace('#', '');
+        
+        // Convert hex to RGB
+        const r = parseInt(color.substr(0, 2), 16);
+        const g = parseInt(color.substr(2, 2), 16);
+        const b = parseInt(color.substr(4, 2), 16);
+        
+        // Create darker variant (reduce brightness by 20%)
+        const darkR = Math.floor(r * 0.8);
+        const darkG = Math.floor(g * 0.8);
+        const darkB = Math.floor(b * 0.8);
+        
+        // Create accent variant (slightly different hue, keep same brightness)
+        const accentR = Math.min(255, Math.floor(r * 1.1));
+        const accentG = Math.min(255, Math.floor(g * 0.9));
+        const accentB = Math.min(255, Math.floor(b * 1.05));
+        
+        // Convert back to hex
+        const toHex = (val) => val.toString(16).padStart(2, '0');
+        
+        return {
+            primaryDark: `#${toHex(darkR)}${toHex(darkG)}${toHex(darkB)}`,
+            accent: `#${toHex(accentR)}${toHex(accentG)}${toHex(accentB)}`
+        };
     }
 
     async processTemplateFile(filePath, replacements) {
