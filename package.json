@@ -35,10 +35,12 @@
       "icon": "electron-app/assets/icons/icon256x256.ico"
     },
     "mac": {
-      "icon": "electron-app/assets/icons/icon512x512.ico"
+      "target": ["dmg", "zip"],
+      "category": "public.app-category.developer-tools",
+      "icon": "electron-app/assets/icons/icon512x512.icns"
     },
     "linux": {
-      "icon": "electron-app/assets/icons/icon512x512.ico"
+      "icon": "electron-app/assets/icons/icon512x512.png"
     }
   }
 }
