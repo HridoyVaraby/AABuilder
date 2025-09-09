@@ -7,7 +7,7 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #feebd6;
     min-height: 100vh;
     color: #333;
 }
@@ -24,8 +24,38 @@ body {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     padding: 20px;
-    text-align: center;
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    border-bottom: 3px solid #f26a1e;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.app-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(242, 106, 30, 0.3);
+    padding: 8px;
+    border: 2px solid #f26a1e;
+}
+
+.app-icon {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+}
+
+.logo-text {
+    text-align: left;
 }
 
 .app-header h1 {
@@ -33,11 +63,16 @@ body {
     font-weight: 700;
     color: #2c3e50;
     margin-bottom: 5px;
+    background: linear-gradient(135deg, #f26a1e, #ff8c42);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .app-header p {
     color: #7f8c8d;
     font-size: 1.1rem;
+    margin: 0;
 }
 
 /* Main content */
@@ -72,7 +107,18 @@ body {
     color: #2c3e50;
     margin-bottom: 20px;
     padding-bottom: 10px;
-    border-bottom: 2px solid #ecf0f1;
+    border-bottom: 2px solid #f26a1e;
+    position: relative;
+}
+
+.form-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: linear-gradient(90deg, #f26a1e, #ff8c42);
 }
 
 .section-description {
@@ -108,9 +154,9 @@ body {
 .form-group input[type="text"]:focus,
 .form-group input[type="url"]:focus {
     outline: none;
-    border-color: #3498db;
+    border-color: #f26a1e;
     background: white;
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+    box-shadow: 0 0 0 3px rgba(242, 106, 30, 0.1);
 }
 
 .form-group small {
@@ -149,7 +195,7 @@ body {
 }
 
 .file-btn {
-    background: #3498db;
+    background: #f26a1e;
     color: white;
     border: none;
     padding: 12px 20px;
@@ -161,9 +207,9 @@ body {
 }
 
 .file-btn:hover {
-    background: #2980b9;
+    background: #e55a0e;
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+    box-shadow: 0 4px 12px rgba(242, 106, 30, 0.3);
 }
 
 .file-path {
@@ -193,7 +239,7 @@ body {
 }
 
 .radio-label:hover {
-    border-color: #3498db;
+    border-color: #f26a1e;
 }
 
 .radio-label input[type="radio"] {
@@ -211,8 +257,8 @@ body {
 }
 
 .radio-label input[type="radio"]:checked + .radio-custom {
-    border-color: #3498db;
-    background: #3498db;
+    border-color: #f26a1e;
+    background: #f26a1e;
 }
 
 .radio-label input[type="radio"]:checked + .radio-custom::after {
@@ -250,7 +296,7 @@ body {
 }
 
 .permission-item:hover {
-    border-color: #3498db;
+    border-color: #f26a1e;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -261,7 +307,7 @@ body {
 }
 
 .permission-item input[type="checkbox"]:checked ~ .permission-name {
-    color: #3498db;
+    color: #f26a1e;
     font-weight: 600;
 }
 
@@ -282,11 +328,23 @@ body {
     margin-top: 40px;
     text-align: center;
     padding-top: 30px;
-    border-top: 2px solid #ecf0f1;
+    border-top: 2px solid #f26a1e;
+    position: relative;
+}
+
+.form-actions::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, #f26a1e, #ff8c42);
 }
 
 .generate-btn {
-    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    background: linear-gradient(135deg, #f26a1e, #ff8c42);
     color: white;
     border: none;
     padding: 15px 40px;
@@ -295,12 +353,13 @@ body {
     font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 6px 20px rgba(46, 204, 113, 0.3);
+    box-shadow: 0 6px 20px rgba(242, 106, 30, 0.3);
 }
 
 .generate-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(46, 204, 113, 0.4);
+    box-shadow: 0 8px 25px rgba(242, 106, 30, 0.4);
+    background: linear-gradient(135deg, #e55a0e, #f26a1e);
 }
 
 .generate-btn:disabled {
@@ -337,7 +396,7 @@ body {
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #3498db, #2ecc71);
+    background: linear-gradient(90deg, #f26a1e, #ff8c42);
     width: 0%;
     transition: width 0.5s ease;
     border-radius: 4px;
@@ -376,7 +435,7 @@ body {
 }
 
 .action-btn {
-    background: #3498db;
+    background: #f26a1e;
     color: white;
     border: none;
     padding: 12px 24px;
@@ -388,7 +447,8 @@ body {
 
 .action-btn:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+    box-shadow: 0 4px 12px rgba(242, 106, 30, 0.3);
+    background: #e55a0e;
 }
 
 .action-btn.secondary {
@@ -412,6 +472,26 @@ body {
 @media (max-width: 768px) {
     .app-header h1 {
         font-size: 2rem;
+    }
+    
+    .logo-section {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .logo-text {
+        text-align: center;
+    }
+    
+    .app-logo {
+        width: 50px;
+        height: 50px;
+        padding: 6px;
+    }
+    
+    .app-icon {
+        width: 38px;
+        height: 38px;
     }
     
     .main-content {
