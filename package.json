@@ -42,5 +42,9 @@
     "linux": {
       "icon": "electron-app/assets/icons/icon512x512.png"
     }
+  },
+  "publish": {
+    "provider": "github",
+    "releaseType": "release"
   }
 }
