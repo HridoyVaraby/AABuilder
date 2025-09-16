@@ -5,8 +5,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowInsets;
-import android.view.WindowInsetsController;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -16,6 +14,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.core.graphics.Insets;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -99,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "Applying window insets to WebView");
                 
                 // Get system window insets
-                WindowInsetsCompat systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
                 
                 // Apply padding to the WebView to account for system bars
                 v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

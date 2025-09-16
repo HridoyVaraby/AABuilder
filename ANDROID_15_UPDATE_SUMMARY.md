@@ -22,7 +22,9 @@
 # New gradle.properties optimizations
 android.enableJetifier=false
 android.enableR8.fullMode=true
-android.enableBuildCache=true
+
+# Gradle build cache (replaces deprecated android.enableBuildCache)
+org.gradle.caching=true
 ```
 
 ### 4. **AndroidManifest.xml Compatibility**
@@ -115,6 +117,16 @@ If you have existing AABuilder projects, they will automatically use the new And
 2. **Verify all WebView features work correctly**
 3. **Test edge-to-edge display on various screen sizes**
 4. **Validate performance improvements**
+
+## 🔧 Issues Fixed
+
+### 1. Deprecated Property Error
+**Issue**: `android.enableBuildCache` was deprecated and removed in Android Gradle Plugin 7.0+
+**Solution**: Replaced with `org.gradle.caching=true` which uses the modern Gradle build cache
+
+### 2. WindowInsets Type Compatibility Error
+**Issue**: `WindowInsetsCompat systemBars = insets.getInsets(...)` caused type mismatch
+**Solution**: Changed to `Insets systemBars = insets.getInsets(...)` and added proper import
 
 ---
 
