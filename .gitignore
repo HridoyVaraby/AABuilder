@@ -8,7 +8,7 @@ yarn-error.log*
 dist/
 out/
 *.asar
-
+test-output/*
 # OS-specific files
 .DS_Store
 Thumbs.db

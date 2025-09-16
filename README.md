@@ -94,7 +94,7 @@ npm start
 - **Node.js** v14 or higher ([Download](https://nodejs.org/))
 - **npm** (included with Node.js)
 - **Android Studio** (for building the generated projects)
-- **Java 21** (recommended for optimal compatibility)
+- **Java 11+** (Java 17 or 21 recommended for optimal compatibility)
 
 ### Development Setup
 
@@ -219,9 +219,9 @@ AABuilder/
 - **[uuid](https://github.com/uuidjs/uuid)**: Unique identifier generation
 
 #### Generated Android Projects
-- **Android API 21+**: Supports Android 5.0 Lollipop and newer
-- **Gradle 8.5**: Modern build system with Java 21 compatibility
-- **Android Gradle Plugin 8.2.0**: Latest build tools
+- **Android API 21-35**: Supports Android 5.0 Lollipop to Android 15
+- **Gradle 8.13**: Modern build system with Java 11+ compatibility  
+- **Android Gradle Plugin 8.13.0**: Latest build tools
 - **AppCompat**: Backward compatibility for Material Design
 - **WebView**: Chromium-based web rendering engine
 

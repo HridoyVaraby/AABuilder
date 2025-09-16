@@ -4,12 +4,18 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.WindowInsets;
+import android.view.WindowInsetsController;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.LinearLayout;
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -53,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Handle edge-to-edge display for Android 15+
+        handleEdgeToEdge();
+
         // Modern back button handling for Android 13+ (API 33+)
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
@@ -76,6 +85,31 @@ public class MainActivity extends AppCompatActivity {
         }
         
         Log.d(TAG, "Initial URL set to: " + initialUrl);
+    }
+
+    /**
+     * Handle edge-to-edge display for Android 15+
+     */
+    private void handleEdgeToEdge() {
+        Log.d(TAG, "handleEdgeToEdge() called");
+        
+        try {
+            // Apply edge-to-edge insets to the WebView
+            ViewCompat.setOnApplyWindowInsetsListener(webView, (v, insets) -> {
+                Log.d(TAG, "Applying window insets to WebView");
+                
+                // Get system window insets
+                WindowInsetsCompat systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                
+                // Apply padding to the WebView to account for system bars
+                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+                
+                // Return the consumed insets
+                return insets;
+            });
+        } catch (Exception e) {
+            Log.e(TAG, "Error handling edge-to-edge: " + e.getMessage(), e);
+        }
     }
 
     /**
