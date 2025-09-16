@@ -1,6 +1,6 @@
 {
   "name": "aabuilder",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "description": "Android WebView App Builder using Electron + Node.js",
   "main": "electron-app/main.js",
   "scripts": {
